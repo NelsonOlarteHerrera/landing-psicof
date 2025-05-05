@@ -1,0 +1,27 @@
+# Esto por ahora solo verifica que el código sube y se copia.
+
+# Nombre del workflow que aparecerá en la pestaña "Actions" de GitHub
+name: Verificar Landing Page
+
+# Cuándo se debe ejecutar este workflow
+on:
+  push:               # Se ejecuta cuando hay un push (cambios enviados)
+    branches: [main]  # ... pero solo si es en la rama "main"
+  pull_request:       # También se ejecuta si se crea/modifica un pull request
+    branches: [main]  # ... que apunte a la rama "main"
+
+jobs:                 # Define uno o más "trabajos" que se van a ejecutar
+  build:              # Nombre del trabajo (puede ser cualquier nombre)
+    runs-on: ubuntu-latest  # Define que se ejecutará en una máquina virtual con Ubuntu
+
+    steps:            # Pasos del trabajo
+      - name: Clonar repositorio
+        uses: actions/checkout@v3
+        # Usa la acción oficial de GitHub para clonar tu repositorio en la VM temporal
+
+      - name: Verificar archivos HTML y CSS
+        run: |         # Ejecuta comandos en la terminal
+          echo "Archivos copiados correctamente"
+          ls -la
+          # Muestra un mensaje en consola
+          # Lista todos los archivos y carpetas en el directorio con detalles
