@@ -1,0 +1,158 @@
+:root {
+    --color-primario: #1864EE;
+    --color-secundario: #f8f9fa;
+    --color-texto: #333;
+    --color-footer: #0d1b2a;
+    --color-whatsapp: #25d366;
+    --color-whatsapp-hover: #1ebe57;
+    --color-hero-overlay: rgba(0, 0, 0, 0.4);
+    --color-acordeon-activo: #e7f1ff;
+  }
+  
+  /* === GENERAL === */
+  body {
+    background-color: var(--color-secundario);
+    color: var(--color-texto);
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+    line-height: 1.6;
+  }
+  
+  /* === NAVBAR === */
+  .navbar {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .navbar .nav-link {
+    font-weight: 500;
+    color: var(--color-texto) !important;
+  }
+  .navbar .nav-link:hover,
+  .navbar .nav-link.active {
+    color: var(--color-primario) !important;
+  }
+  .navbar.shadow-sm {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  .navbar .btn-outline-primary {
+    border-radius: 20px;
+    font-weight: 500;
+    padding: 6px 16px;
+  }
+  
+  /* === HERO === */
+  .hero-img {
+    background: linear-gradient(var(--color-hero-overlay), var(--color-hero-overlay)),
+                url('../assets/img/hero-bg3.png') center center no-repeat;
+    background-size: cover;
+    min-height: 90vh;
+    text-align: center;
+    padding: 6rem 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    color: white;
+  }
+  
+  /* === BOTÓN HERO === */
+  .hero-img .btn {
+    font-size: 1.1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+  }
+  .hero-img .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* === SECCIONES === */
+  section {
+    scroll-margin-top: 80px;
+  }
+  
+  /* === SERVICIOS === */
+  .p-4.border {
+    transition: transform 0.2s ease-in-out;
+  }
+  .p-4.border:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  }
+  
+  /* === EQUIPO === */
+  .img-equipo {
+    height: 360px;
+    object-fit: cover;
+  }
+  
+  /* === TESTIMONIOS === */
+  .testimonio {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s ease;
+  }
+  .testimonio:hover {
+    transform: translateY(-5px);
+  }
+  .testimonio img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+  }
+  
+  /* === FAQ === */
+  .accordion-button:not(.collapsed) {
+    background-color: var(--color-acordeon-activo);
+    color: var(--color-primario);
+    font-weight: 500;
+  }
+  .accordion-button:focus {
+    box-shadow: 0 0 0 0.25rem rgba(24, 100, 238, 0.25);
+  }
+  
+  /* === CONTACTO === */
+  form .form-control:focus {
+    border-color: var(--color-primario);
+    box-shadow: 0 0 0 0.2rem rgba(24, 100, 238, 0.25);
+  }
+  
+  /* === FOOTER === */
+  footer {
+    font-size: 0.95rem;
+    background-color: var(--color-footer);
+    color: white;
+  }
+  footer h5,
+  footer h6 {
+    font-weight: 600;
+  }
+  footer a:hover {
+    color: #ffffff;
+  }
+  
+  /* === WHATSAPP FLOAT === */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--color-whatsapp);
+    color: white;
+    font-size: 1.8rem;
+    padding: 12px 14px;
+    border-radius: 50%;
+    z-index: 999;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    transition: background-color 0.3s ease;
+  }
+  .whatsapp-float:hover {
+    background-color: var(--color-whatsapp-hover);
+    text-decoration: none;
+  }
+  
