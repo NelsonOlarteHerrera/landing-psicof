@@ -1,0 +1,50 @@
+# Nombre del workflow que verás en la pestaña "Actions"
+name: Deploy static content to Pages
+
+on:
+  # Ejecutar este workflow cuando se haga push a la rama "main"
+  push:
+    branches: ["main"]
+
+  # Permite ejecutar este workflow manualmente desde la interfaz de GitHub (botón "Run workflow")
+  workflow_dispatch:
+
+# Configuración de permisos necesarios para el token automático que usa GitHub Actions
+permissions:
+  contents: read      # Permiso para leer los archivos del repositorio
+  pages: write        # Permiso para escribir archivos en GitHub Pages
+  id-token: write     # Necesario para autenticarse con Pages de forma segura
+
+# Controla que no se hagan múltiples despliegues al mismo tiempo
+concurrency:
+  group: "pages"             # Grupo de ejecución relacionado a "pages"
+  cancel-in-progress: false  # No cancela despliegues que estén en proceso
+
+jobs:
+  # Definición del único trabajo que ejecutará este workflow
+  deploy:
+    environment:
+      name: github-pages     # Usa el entorno especial "github-pages" (habilita previsualización, etc.)
+      url: ${{ steps.deployment.outputs.page_url }}  # URL final del sitio que se desplegará
+
+    runs-on: ubuntu-latest   # Corre en una máquina virtual Ubuntu en la nube
+
+    steps:
+      # Paso 1: Clona el repositorio en la máquina virtual
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Paso 2: Configura internamente GitHub Pages
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Paso 3: Sube como artefacto todo el contenido de la carpeta raíz ('.')
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: '.'  # Sube todos los archivos de la raíz del proyecto
+
+      # Paso 4: Despliega el contenido subido a GitHub Pages
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
